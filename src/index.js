@@ -2,14 +2,18 @@ const express = require("express");
 const dotenv = require("dotenv").config();
 const mongoose = require("mongoose");
 const app = express();
-const port = 3000;
+const port = 3000; //
+const { errorHandler } = require("./middleware/errorMiddleware");
 
-app.get("/", (req, res) => {
-  res.send("Hello World!");
-});
+
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
+app.use("/users", require("./routes/user.routes"));
+app.use(errorHandler);
 
 app.listen(port, () => {
-  console.log(`Example app listening on port ${port}`);
+  console.log(`ABEMUS API ${port}`);
+  console.log(1, process.env.URI_MONGO);
 });
 
 async function main() {
