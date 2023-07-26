@@ -7,6 +7,11 @@ const mascotaSchema = new mongoose.Schema(
       ref: "User",
       required: true,
     },
+    veterinario: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Veterinario",
+      required: true,
+    },
     nombre_mascota: {
       type: String,
       required: [true, "Por favor escribe el nombre de tu mascota."],
@@ -21,6 +26,10 @@ const mascotaSchema = new mongoose.Schema(
     genero_mascota: {
       type: String,
       required: [true, "Por favor escribe el género de tu mascota."],
+    },
+    edad_mascota: {
+      type: String,
+      required: [true, "Por favor escribe la edad de tu mascota."],
     },
     peso_mascota: {
       type: Number,

@@ -17,6 +17,7 @@ const setMascotas = asyncHandler(async (req, res) => {
     especie_mascota: req.body.especie_mascota,
     raza_mascota: req.body.raza_mascota,
     genero_mascota: req.body.genero_mascota,
+    edad_mascota: req.body.edad_mascota,
     peso_mascota: req.body.peso_mascota,
     veterinario_mascota: req.body.veterinario_mascota,
     ultima_visita_mascota: req.body.ultima_visita_mascota,
@@ -57,11 +58,11 @@ const deleteMascotas = asyncHandler(async (req, res) => {
   if (mascota.user.toString() !== req.user.id) {
     res.status(401);
     throw new Error(
-      "Acceso No Autorizado, el producto no pertenece al usuario logeado"
+      "Acceso No Autorizado, la mascota no pertenece al usuario logeado"
     );
   }
 
-  await Mascota.deleteOne();
+  await Mascota.deleteOne({ _id: req.params.id });
 
   res.status(200).json({ id: req.params.id });
 });
