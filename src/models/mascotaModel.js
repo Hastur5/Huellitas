@@ -1,20 +1,41 @@
 const mongoose = require("mongoose");
 
-const mascotaSchema = mongoose.Schema(
+const mascotaSchema = new mongoose.Schema(
   {
     user: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "User",
       required: true,
     },
-    name: {
+    nombre_mascota: {
       type: String,
-      required: [true, "Por favor escribe el producto que buscas"],
+      required: [true, "Por favor escribe el nombre de tu mascota."],
     },
-    price: {
+    especie_mascota: {
+      type: String,
+      required: [true, "Por favor escribe la especie de tu mascota."],
+    },
+    raza_mascota: {
+      type: String,
+    },
+    genero_mascota: {
+      type: String,
+      required: [true, "Por favor escribe el género de tu mascota."],
+    },
+    peso_mascota: {
       type: Number,
-      required: [true, "Por favor digita el precio del producto"],
+      required: [true, "Por favor anota el peso de tu mascota."],
     },
+    veterinario_mascota: {
+      type: String,
+    },
+    ultima_visita_mascota: {
+      type: Date,
+      timestamps: true,
+    },
+    // imagen_mascota: {
+    //   type: ,
+    // }
   },
   {
     timestamps: true,

@@ -9,6 +9,7 @@ const { errorHandler } = require("./middleware/errorMiddleware");
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use("/users", require("./routes/user.routes"));
+app.use("/mascotas", require("./routes/mascota.routes"));
 app.use(errorHandler);
 
 app.listen(port, () => {
