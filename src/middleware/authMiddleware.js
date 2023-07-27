@@ -1,6 +1,7 @@
 const jwt = require("jsonwebtoken");
 const asyncHandler = require("express-async-handler");
 const User = require("../models/userModel");
+const Veterinario = require("../models/veterinarioModel")
 
 const protect = asyncHandler(async (req, res, next) => {
   let token; //!Usamos let porq va a variar su valor
@@ -16,6 +17,7 @@ const protect = asyncHandler(async (req, res, next) => {
       const decoded = jwt.verify(token, process.env.JWT_SECRET);
       //! Obtener el usuario del token
       req.user = await User.findById(decoded.id).select("-password");
+      req.veterinario = await Veterinario.findById(decoded.id).select("-password")
 
       next(); //! NEXT Continua con la actualizacion del programa ???
     } catch (error) {
@@ -29,6 +31,8 @@ const protect = asyncHandler(async (req, res, next) => {
     throw new Error("Acceso no autorizado, porque no se recibió ningún token");
   }
 });
+
+
 
 module.exports = {
   protect,
