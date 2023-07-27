@@ -20,7 +20,7 @@ const registerVeterinario = asyncHandler(async (req, res) => {
   const salt = await bcrypt.genSalt(10);
   const hashedPassword = await bcrypt.hash(password, salt);
 
-  const veterinario = await Veterinarioeterinario.create({
+  const veterinario = await Veterinario.create({
     nombre,
     email,
     password: hashedPassword,
@@ -65,7 +65,7 @@ const loginVeterinario = asyncHandler(async (req, res) => {
   }
 });
 
-const getMyData = asyncHandler(async (req, res) => {
+const getMyDataVet = asyncHandler(async (req, res) => {
   res.json(req.veterinario);
 });
 
@@ -78,5 +78,5 @@ const generateToken = (id) => {
 module.exports = {
   registerVeterinario,
   loginVeterinario,
-  getMyData,
+  getMyDataVet,
 };

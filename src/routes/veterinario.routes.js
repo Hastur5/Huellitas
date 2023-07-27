@@ -5,11 +5,11 @@ const { protect } = require("../middleware/authMiddleware");
 const {
   registerVeterinario,
   loginVeterinario,
-  getMyData,
+  getMyDataVet,
 } = require("../controllers/veterinario.controller");
 
 router.post("/", registerVeterinario);
-router.post("/loginVet", loginVeterinario);
-router.get("/myDataVet", protect, getMyData);
+router.post("/login", loginVeterinario);
+router.get("/myDataVet", protect, getMyDataVet);
 
 module.exports = router;
